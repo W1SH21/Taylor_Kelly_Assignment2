@@ -2,14 +2,14 @@
 
 using namespace std;
 
-enum Comparison : string {GREATER, LESS, EQUAL};
+enum Comparison {GREATER, LESS, EQUAL};
 
 class ItemType {
 private:
     int value;
     
 public:
-    Itemtype();
+    ItemType();
     Comparison compareTo(ItemType item);
     int getValue() const;
     void initialize(int num);
