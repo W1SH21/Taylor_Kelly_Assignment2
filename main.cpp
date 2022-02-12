@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
         cout << "(p) - Print list" << endl;
         cout << "(l) - Print length" << endl;
         cout << "(q) - Quit program" << endl;
-        cin >> uinput;
+        getline(cin, uinput);
         if (uinput == "i") {
             int ins;
             ItemType number;
@@ -41,6 +41,8 @@ int main(int argc, char* argv[]) {
             cout << "Enter number: ";
             cin >> ins;
             cout << endl;
+            string fix;
+            getline(cin, fix); 
             number.initialize(ins);
             if (list.searchItem(number) == -1) {
                 list.insertItem(number);
@@ -57,6 +59,8 @@ int main(int argc, char* argv[]) {
                 list.printList();
                 cout << "Enter value to delete: ";
                 cin >> del;
+                string fix;
+                getline(cin, fix);
                 cout << endl;
                 number.initialize(del);
                 list.deleteItem(number);
@@ -75,15 +79,19 @@ int main(int argc, char* argv[]) {
                 cout << "Index " << index << endl;
             } // if
         } else if (uinput == "n") {
-            cout << list.GetNextItem().getValue() << endl;
+            int temp = list.GetNextItem().getValue();
+            if (temp != -1) {
+                cout << temp << endl;
+            } // if
         } else if (uinput == "r") {
             list.ResetList();
             cout << "Iterator reset." << endl;
         } else if (uinput == "a") {
-            cout << "FUCK" << endl;
+            
         } else if (uinput == "m") {
             string ulist;
             cout << "List elements separated by spaces in order: ";
+            getline(cin, ulist);
             stringstream s(ulist);
             int temp;
             SortedLinkedList merger;
