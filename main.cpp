@@ -87,7 +87,8 @@ int main(int argc, char* argv[]) {
             list.ResetList();
             cout << "Iterator reset." << endl;
         } else if (uinput == "a") {
-            
+            list.deleteAlt();
+            list.printList();
         } else if (uinput == "m") {
             string ulist;
             cout << "List elements separated by spaces in order: ";
@@ -111,6 +112,7 @@ int main(int argc, char* argv[]) {
         } else if (uinput == "t") {
             string ulist;
             cout << "List elements separated by spaces in order: ";
+            getline(cin, ulist);
             stringstream s(ulist);
             int temp;
             SortedLinkedList intersector;

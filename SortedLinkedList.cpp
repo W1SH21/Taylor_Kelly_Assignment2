@@ -21,30 +21,30 @@ ListNode* SortedLinkedList::getHead() {
   return head;
 } //getHead
 
-void SortedLinkedList::insertItem(ItemType item) {
+void SortedLinkedList::insertItem(ItemType items) {
   ListNode* temp = head;
   bool flag = true;
-  if (size == 0 || (item.compareTo((temp->item)) == ItemType::LESS)) {
+  if (size == 0 || (items.compareTo((temp->item)) == ItemType::LESS)) {
     ListNode* newItem = new ListNode();
-    newItem->item = item;
+    newItem->item = items;
     newItem->next = head;
     head = newItem;
     flag = false;
     size ++;
   } else {
     for (int i = 0; i < size - 1; i ++) {
-      if ((item.compareTo(temp->item) == ItemType::GREATER) && (item.compareTo((temp->next)->item) == ItemType::LESS)) {
+      if ((items.compareTo(temp->item) == ItemType::GREATER) && (items.compareTo((temp->next)->item) == ItemType::LESS)) {
 	ListNode* newItem = new ListNode();;
-	newItem->item = item;
+	newItem->item = items;
 	newItem->next = temp->next;
 	temp->next = newItem;
 	size ++;
 	flag = false;
       } //if
     } //for
-    if ((item.compareTo(temp->item) == ItemType::GREATER) && flag) {
+    if ((items.compareTo(temp->item) == ItemType::GREATER) && flag) {
       ListNode* newItem = new ListNode();
-      newItem->item = item;
+      newItem->item = items;
       newItem->next = NULL;
       temp->next = newItem;
       size ++;
@@ -121,10 +121,12 @@ void SortedLinkedList::ResetList() {
 
 void SortedLinkedList::printList(){
   ListNode* temp = head;
-  while ((temp->next) != NULL) {
-    cout << ((temp->item).getValue()) << " ";
-    temp = temp->next;
-  } //while
+  if (length() > 0) {
+      while ((temp->next) != NULL) {
+          cout << ((temp->item).getValue()) << " ";
+          temp = temp->next;
+      } //while
+  }
   cout << endl;
 } //printList
 
@@ -209,4 +211,37 @@ void SortedLinkedList::mergeList(SortedLinkedList list) {
 } //mergeList
 
 void SortedLinkedList::findCommonElements(SortedLinkedList list) {
+    ListNode* temp;
+    temp = head;
+    if (length() > 0) {
+        ItemType temp2;
+        temp2 = temp->item;
+        if (list.searchItem(temp2) == -1) {
+            deleteItem(temp2);
+        }
+        temp = temp->next;
+        temp2 = temp->item;
+        for (int count = 1; count < length() + 2; count++) {
+            if (list.searchItem(temp2) == -1) {
+                deleteItem(temp2);
+            }
+            temp = temp->next;
+            temp2 = temp->item;
+         }
+    } // if
 }
+
+void SortedLinkedList::deleteAlt() {
+    ListNode* temp;
+    temp = head;
+    if (length() > 0) {
+        for (int count = 0; count < length(); count++) {
+            temp = temp->next;
+            if (count % 2 == 0) {
+                ItemType temp2;
+                temp2 = temp->item;
+                deleteItem(temp2);
+            }
+        } // for
+    } // if
+} // deleteAlt

@@ -1,0 +1,7 @@
+Samuel Kelly (811319794) stk67461@uga.edu
+Benjamin Taylor (811365066) bdt75522@uga.edu
+
+Samuel implemented the driver class and ItemType classes as well as handling the makefile
+and testing, while Benjamin implemented the SortedLinkedList classes. We cooperated on debugging.
+    
+To run the program, simply run "make" and then "./main", followed by the file name of the input file.
